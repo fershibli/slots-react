@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 const App = () => {
   const [slot1, setSlot1] = useState("")
@@ -14,13 +14,18 @@ const App = () => {
     setSlot1(randomSymbol())
     setSlot2(randomSymbol())
     setSlot3(randomSymbol())
-
+    setMessage("Spinning...")
+  }
+  useEffect(() => {
+    if (slot1 == "") {
+      return
+    }
     if (slot1 === slot2 && slot2 === slot3) {
       setMessage("Jackpot! You won!")
     } else {
       setMessage("Try again!")
     }
-  }
+  }, [slot1, slot2, slot3])
 
   return (
     <div>
