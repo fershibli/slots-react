@@ -7,7 +7,9 @@ const App = () => {
   const [message, setMessage] = useState("")
 
   const symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"]
-
+  const slotsHasSymbols = useMemo(() =>
+    [slot1, slot2, slot3].every((i) => symbols.includes(i))
+  )
   const spinSlots = () => {
     const randomSymbol = () =>
       symbols[Math.floor(Math.random() * symbols.length)]
@@ -21,13 +23,12 @@ const App = () => {
     setTimeout(() => setSlot3(randomSymbol()), 3000)
   }
   useEffect(() => {
-    if (slot1 === "") {
-      return
-    }
-    if (slot1 === slot2 && slot2 === slot3) {
-      setMessage("Jackpot! You won!")
-    } else {
-      setMessage("Try again!")
+    if (slotsHasSymbols) {
+      if (slot1 === slot2 && slot2 === slot3) {
+        setMessage("Jackpot! You won!")
+      } else {
+        setMessage("Try again!")
+      }
     }
   }, [slot1, slot2, slot3])
 
