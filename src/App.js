@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 
 const App = () => {
   const [slot1, setSlot1] = useState("")
@@ -6,18 +6,22 @@ const App = () => {
   const [slot3, setSlot3] = useState("")
   const [message, setMessage] = useState("")
 
+  const symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"]
+
   const spinSlots = () => {
-    const symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"]
     const randomSymbol = () =>
       symbols[Math.floor(Math.random() * symbols.length)]
 
-    setSlot1(randomSymbol())
-    setSlot2(randomSymbol())
-    setSlot3(randomSymbol())
+    setSlot1("...")
+    setSlot2("...")
+    setSlot3("...")
     setMessage("Spinning...")
+    setTimeout(setSlot1(randomSymbol()), 1000)
+    setTimeout(setSlot2(randomSymbol()), 2000)
+    setTimeout(setSlot3(randomSymbol()), 3000)
   }
   useEffect(() => {
-    if (slot1 == "") {
+    if (slot1 === "") {
       return
     }
     if (slot1 === slot2 && slot2 === slot3) {
