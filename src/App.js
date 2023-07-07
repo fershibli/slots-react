@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 const App = () => {
   const [slot1, setSlot1] = useState(["◻️", "◻️", "◻️"])
@@ -8,9 +8,7 @@ const App = () => {
   const [stoppedSpin, setStoppedSpin] = useState(true)
 
   const symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"]
-  const slotsHasSymbols = useMemo(() =>
-    [...slot1, ...slot2, ...slot3].every((i) => symbols.includes(i))
-  )
+
   const spinSlots = () => {
     if (!stoppedSpin) {
       return
@@ -20,7 +18,7 @@ const App = () => {
     const randomSymbols = () => {
       const randomPos = Math.floor(Math.random() * symbols.length)
       const prevPos = randomPos - 1 < 0 ? symbols.length - 1 : randomPos - 1
-      const nextPos = randomPos + 1 == symbols.length ? 0 : randomPos + 1
+      const nextPos = randomPos + 1 === symbols.length ? 0 : randomPos + 1
       return [symbols[prevPos], symbols[randomPos], symbols[nextPos]]
     }
 
@@ -30,18 +28,20 @@ const App = () => {
     setMessage("Spinning...")
     setTimeout(() => setSlot1(randomSymbols()), 1000)
     setTimeout(() => setSlot2(randomSymbols()), 2000)
-    setTimeout(() => setSlot3(randomSymbols()), 3000)
+    setTimeout(() => {
+      setSlot3(randomSymbols())
+      setStoppedSpin(true)
+    }, 3000)
   }
   useEffect(() => {
-    if (slotsHasSymbols) {
+    if (stoppedSpin) {
       if (slot1 === slot2 && slot2 === slot3) {
         setMessage("Jackpot! You won!")
       } else {
         setMessage("Try again!")
       }
-      setStoppedSpin(true)
     }
-  }, [slot1, slot2, slot3])
+  }, [slot1, slot2, slot3, stoppedSpin])
 
   return (
     <div>
