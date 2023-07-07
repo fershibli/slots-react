@@ -7,15 +7,24 @@ const App = () => {
   const [message, setMessage] = useState("")
 
   const spinSlots = () => {
-    setSlot1("...")
-    setSlot2("...")
-    setSlot3("...")
-    setMessage("Spinning...")
+    const symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"]
+    const randomSymbol = () =>
+      symbols[Math.floor(Math.random() * symbols.length)]
+
+    setSlot1(randomSymbol())
+    setSlot2(randomSymbol())
+    setSlot3(randomSymbol())
+
+    if (slot1 === slot2 && slot2 === slot3) {
+      setMessage("Jackpot! You won!")
+    } else {
+      setMessage("Try again!")
+    }
   }
 
   return (
     <div>
-      <h1>React Slots Machine</h1>
+      <h1>Slot Machine</h1>
       <div className="slots">
         <div className="slot">{slot1}</div>
         <div className="slot">{slot2}</div>
