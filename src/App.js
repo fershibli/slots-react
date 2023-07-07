@@ -16,9 +16,9 @@ const App = () => {
     setSlot2("...")
     setSlot3("...")
     setMessage("Spinning...")
-    setTimeout(setSlot1(randomSymbol()), 1000)
-    setTimeout(setSlot2(randomSymbol()), 2000)
-    setTimeout(setSlot3(randomSymbol()), 3000)
+    setTimeout(() => setSlot1(randomSymbol()), 1000)
+    setTimeout(() => setSlot2(randomSymbol()), 2000)
+    setTimeout(() => setSlot3(randomSymbol()), 3000)
   }
   useEffect(() => {
     if (slot1 === "") {
