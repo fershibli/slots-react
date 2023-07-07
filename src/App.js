@@ -5,12 +5,17 @@ const App = () => {
   const [slot2, setSlot2] = useState("")
   const [slot3, setSlot3] = useState("")
   const [message, setMessage] = useState("")
+  const [stoppedSpin, setStoppedSpin] = useState(true)
 
   const symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"]
   const slotsHasSymbols = useMemo(() =>
     [slot1, slot2, slot3].every((i) => symbols.includes(i))
   )
   const spinSlots = () => {
+    if (!stoppedSpin) {
+      return
+    }
+    setStoppedSpin(false)
     const randomSymbol = () =>
       symbols[Math.floor(Math.random() * symbols.length)]
 
@@ -29,6 +34,7 @@ const App = () => {
       } else {
         setMessage("Try again!")
       }
+      setStoppedSpin(true)
     }
   }, [slot1, slot2, slot3])
 
