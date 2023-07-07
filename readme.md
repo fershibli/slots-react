@@ -1,4 +1,4 @@
-# React Slot Machine
+# React Slots Machine
 
 ## Technologies Used
 
@@ -11,4 +11,4 @@
 
 This project is licensed under the [MIT License](LICENSE).
 
-Enjoy playing the React Slot Machine game!
+Enjoy playing the React Slots Machine game!
