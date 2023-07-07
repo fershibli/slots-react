@@ -9,7 +9,7 @@ const App = () => {
 
   const symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"]
   const slotsHasSymbols = useMemo(() =>
-    [slot1, slot2, slot3].every((i) => symbols.includes(i))
+    [...slot1, ...slot2, ...slot3].every((i) => symbols.includes(i))
   )
   const spinSlots = () => {
     if (!stoppedSpin) {
