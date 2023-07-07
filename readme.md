@@ -1,5 +1,9 @@
 # React Slots Machine
 
+Welcome to the React Slot Machine game! This is a simple game where you can spin the slots and try your luck to win the jackpot. It's a fun and addictive game that will keep you entertained!
+
+![React Slots Machine Screenshot](screenshot.png)
+
 ## How to Play
 
 1. Clone or download the repository to your local machine.
