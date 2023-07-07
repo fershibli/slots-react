@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react"
 
 const App = () => {
-  const [slot1, setSlot1] = useState(["-", "-", "-"])
-  const [slot2, setSlot2] = useState(["-", "-", "-"])
-  const [slot3, setSlot3] = useState(["-", "-", "-"])
+  const [slot1, setSlot1] = useState(["◻️", "◻️", "◻️"])
+  const [slot2, setSlot2] = useState(["◻️", "◻️", "◻️"])
+  const [slot3, setSlot3] = useState(["◻️", "◻️", "◻️"])
   const [message, setMessage] = useState("")
   const [stoppedSpin, setStoppedSpin] = useState(true)
 
@@ -17,13 +17,16 @@ const App = () => {
     }
     setStoppedSpin(false)
 
-    const randomSymbol = () =>
-      symbols[Math.floor(Math.random() * symbols.length)]
-    const randomSymbols = () => [randomSymbol(), randomSymbol(), randomSymbol()]
+    const randomSymbols = () => {
+      const randomPos = Math.floor(Math.random() * symbols.length)
+      const prevPos = randomPos - 1 < 0 ? symbols.length - 1 : randomPos - 1
+      const nextPos = randomPos + 1 == symbols.length ? 0 : randomPos + 1
+      return [symbols[prevPos], symbols[randomPos], symbols[nextPos]]
+    }
 
-    setSlot1(["·", "·", "·"])
-    setSlot2(["·", "·", "·"])
-    setSlot3(["·", "·", "·"])
+    setSlot1(["⏬", "⏬", "⏬"])
+    setSlot2(["⏬", "⏬", "⏬"])
+    setSlot3(["⏬", "⏬", "⏬"])
     setMessage("Spinning...")
     setTimeout(() => setSlot1(randomSymbols()), 1000)
     setTimeout(() => setSlot2(randomSymbols()), 2000)
