@@ -36,7 +36,7 @@ const SlotsDiscsController = () => {
         <div>
             <div className="disc-panel">
                 <SlotDisc
-                    key={1}
+                    discNumber={1}
                     timeout={1000}
                     discState={slot1}
                     setDiscState={setSlot1}
@@ -44,7 +44,7 @@ const SlotsDiscsController = () => {
                     setStoppedSpin={setStoppedSpin1}
                 />
                 <SlotDisc
-                    key={2}
+                    discNumber={2}
                     timeout={2000}
                     discState={slot2}
                     setDiscState={setSlot2}
@@ -52,7 +52,7 @@ const SlotsDiscsController = () => {
                     setStoppedSpin={setStoppedSpin2}
                 />
                 <SlotDisc
-                    key={3}
+                    discNumber={3}
                     timeout={3000}
                     discState={slot3}
                     setDiscState={setSlot3}

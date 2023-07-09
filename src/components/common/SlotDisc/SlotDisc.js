@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const SlotDisc = ({ key, timeout, discState, setDiscState, triggerSpin }) => {
+const SlotDisc = ({
+    discNumber,
+    timeout,
+    discState,
+    setDiscState,
+    triggerSpin,
+}) => {
     const [shouldSpin, setShouldSpin] = useState(true);
     SlotDisc.symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"];
 
@@ -35,10 +41,10 @@ const SlotDisc = ({ key, timeout, discState, setDiscState, triggerSpin }) => {
     }, [shouldSpin, triggerSpin, setDiscState, timeout]);
 
     return (
-        <div key={key} className="slot-disc">
+        <div className="slot-disc">
             {discState.map((discSymbol, index) => (
                 <div
-                    key={`${key}-${index.padStart(2, "0")}`}
+                    key={`${discNumber}-${index.padStart(2, "0")}`}
                     className="disc-symbol"
                 >
                     {discSymbol}
