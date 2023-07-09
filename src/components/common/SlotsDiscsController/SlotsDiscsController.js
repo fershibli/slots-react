@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SlotsDisc from "../SlotsDisc/SlotsDisc";
+import "./SlotsDiscsController.css";
 
 const SlotsDiscsController = () => {
     const [slot1, setSlot1] = useState(["◻️", "◻️", "◻️"]);
@@ -34,7 +35,7 @@ const SlotsDiscsController = () => {
 
     return (
         <div>
-            <div className="disc-panel">
+            <div className="discs-panel">
                 <SlotsDisc
                     discNumber={1}
                     timeout={1000}
