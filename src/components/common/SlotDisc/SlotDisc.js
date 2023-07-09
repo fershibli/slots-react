@@ -44,7 +44,7 @@ const SlotDisc = ({
         <div className="slot-disc">
             {discState.map((discSymbol, index) => (
                 <div
-                    key={`${discNumber}-${index.padStart(2, "0")}`}
+                    key={`${discNumber}-${index.toString().padStart(2, "0")}`}
                     className="disc-symbol"
                 >
                     {discSymbol}
