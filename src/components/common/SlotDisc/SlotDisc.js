@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 const SlotDisc = ({ key, timeout, discState, setDiscState, triggerSpin }) => {
-    const [shouldSpin, setShouldSpin] = useState(false);
+    const [shouldSpin, setShouldSpin] = useState(true);
     SlotDisc.symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"];
 
     useEffect(() => {
-        if (triggerSpin && !shouldSpin) {
-            setShouldSpin(true);
+        if (triggerSpin && shouldSpin) {
+            setShouldSpin(false);
             // picks a random position for the middle component
             const randomPos = Math.floor(
                 Math.random() * SlotDisc.symbols.length
@@ -29,7 +29,7 @@ const SlotDisc = ({ key, timeout, discState, setDiscState, triggerSpin }) => {
                 timeout
             );
         } else {
-            setShouldSpin(false);
+            setShouldSpin(true);
         }
     }, [shouldSpin, triggerSpin, setDiscState, timeout]);
 
