@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SlotDisc from "../SlotDisc/SlotDisc";
+import SlotsDisc from "../SlotsDisc/SlotsDisc";
 
 const SlotsDiscsController = () => {
     const [slot1, setSlot1] = useState(["◻️", "◻️", "◻️"]);
@@ -35,7 +35,7 @@ const SlotsDiscsController = () => {
     return (
         <div>
             <div className="disc-panel">
-                <SlotDisc
+                <SlotsDisc
                     discNumber={1}
                     timeout={1000}
                     discState={slot1}
@@ -43,7 +43,7 @@ const SlotsDiscsController = () => {
                     triggerSpin={triggerSpin}
                     setStoppedSpin={setStoppedSpin1}
                 />
-                <SlotDisc
+                <SlotsDisc
                     discNumber={2}
                     timeout={2000}
                     discState={slot2}
@@ -51,7 +51,7 @@ const SlotsDiscsController = () => {
                     triggerSpin={triggerSpin}
                     setStoppedSpin={setStoppedSpin2}
                 />
-                <SlotDisc
+                <SlotsDisc
                     discNumber={3}
                     timeout={3000}
                     discState={slot3}
