@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SlotDisc from "../SlotDisc/SlotDisc";
 
-const SlotsDiscPanel = () => {
+const SlotsDiscsController = () => {
     const [slot1, setSlot1] = useState(["◻️", "◻️", "◻️"]);
     const [slot2, setSlot2] = useState(["◻️", "◻️", "◻️"]);
     const [slot3, setSlot3] = useState(["◻️", "◻️", "◻️"]);
@@ -68,4 +68,4 @@ const SlotsDiscPanel = () => {
     );
 };
 
-export default SlotsDiscPanel;
+export default SlotsDiscsController;
