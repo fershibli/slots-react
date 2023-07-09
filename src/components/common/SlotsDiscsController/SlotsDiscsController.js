@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SlotsDisc from "../SlotsDisc/SlotsDisc";
 import "./SlotsDiscsController.css";
+import { SLOTS_SYMBOLS } from "../../../config";
 
 const SlotsDiscsController = () => {
     const [slot1, setSlot1] = useState(["◻️", "◻️", "◻️"]);
@@ -11,6 +12,7 @@ const SlotsDiscsController = () => {
     const [stoppedSpin3, setStoppedSpin3] = useState(true);
     const [message, setMessage] = useState("");
     const [triggerSpin, setTriggerSpin] = useState(false);
+    const symbols = SLOTS_SYMBOLS;
 
     const spinSlots = () => {
         if (triggerSpin) {
@@ -24,14 +26,29 @@ const SlotsDiscsController = () => {
 
     useEffect(() => {
         if (stoppedSpin1 && stoppedSpin2 && stoppedSpin3) {
-            if (slot1 === slot2 && slot2 === slot3) {
+            if (
+                slot1.every(
+                    (value, index) =>
+                        value === slot2[index] &&
+                        value === slot3[index] &&
+                        symbols.includes(value)
+                )
+            ) {
                 setMessage("Jackpot! You won!");
             } else {
                 setMessage("Try again!");
             }
             setTriggerSpin(false);
         }
-    }, [slot1, slot2, slot3, stoppedSpin1, stoppedSpin2, stoppedSpin3]);
+    }, [
+        slot1,
+        slot2,
+        slot3,
+        stoppedSpin1,
+        stoppedSpin2,
+        stoppedSpin3,
+        symbols,
+    ]);
 
     return (
         <div>
