@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { SLOTS_SYMBOLS } from "../../../config";
 
 const SlotsDisc = ({
     discNumber,
@@ -9,7 +10,7 @@ const SlotsDisc = ({
     setStoppedSpin,
 }) => {
     const [shouldSpin, setShouldSpin] = useState(true);
-    SlotsDisc.symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"];
+    SlotsDisc.symbols = SLOTS_SYMBOLS;
 
     useEffect(() => {
         if (triggerSpin && shouldSpin) {
@@ -40,7 +41,7 @@ const SlotsDisc = ({
         } else if (!triggerSpin) {
             setShouldSpin(true);
         }
-    }, [shouldSpin, triggerSpin, setDiscState, timeout]);
+    }, [shouldSpin, triggerSpin, setDiscState, timeout, setStoppedSpin]);
 
     return (
         <div className="slot-disc">
