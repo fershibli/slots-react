@@ -6,6 +6,7 @@ const SlotsDisc = ({
     discState,
     setDiscState,
     triggerSpin,
+    setStoppedSpin,
 }) => {
     const [shouldSpin, setShouldSpin] = useState(true);
     SlotsDisc.symbols = ["🍒", "🍊", "🍇", "🍋", "🍎", "🔔"];
@@ -28,16 +29,15 @@ const SlotsDisc = ({
             // then sets a temporary rolling state for the disc
             setDiscState(["⏬", "⏬", "⏬"]);
             // then schedules the calculated state for the said disc
-            setTimeout(
-                () =>
-                    setDiscState([
-                        SlotsDisc.symbols[prevPos],
-                        SlotsDisc.symbols[randomPos],
-                        SlotsDisc.symbols[nextPos],
-                    ]),
-                timeout
-            );
-        } else {
+            setTimeout(() => {
+                setDiscState([
+                    SlotsDisc.symbols[prevPos],
+                    SlotsDisc.symbols[randomPos],
+                    SlotsDisc.symbols[nextPos],
+                ]);
+                setStoppedSpin(true);
+            }, timeout);
+        } else if (!triggerSpin) {
             setShouldSpin(true);
         }
     }, [shouldSpin, triggerSpin, setDiscState, timeout]);
