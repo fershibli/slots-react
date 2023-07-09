@@ -17,8 +17,9 @@ const SlotDisc = ({ key, timeout, discState, setDiscState, triggerSpin }) => {
             // gets the next one, looping forward if needed
             const nextPos =
                 randomPos + 1 === SlotDisc.symbols.length ? 0 : randomPos + 1;
-            // then sets the state for the said disc
-
+            // then sets a temporary rolling state for the disc
+            setDiscState(["⏬", "⏬", "⏬"]);
+            // then schedules the calculated state for the said disc
             setTimeout(
                 () =>
                     setDiscState([
