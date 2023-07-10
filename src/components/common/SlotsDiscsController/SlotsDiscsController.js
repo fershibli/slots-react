@@ -10,7 +10,7 @@ const SlotsDiscsController = () => {
     const [stoppedSpin1, setStoppedSpin1] = useState(true);
     const [stoppedSpin2, setStoppedSpin2] = useState(true);
     const [stoppedSpin3, setStoppedSpin3] = useState(true);
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState("Good Luck!");
     const [triggerSpin, setTriggerSpin] = useState(false);
     const symbols = SLOTS_SYMBOLS;
 
@@ -25,6 +25,9 @@ const SlotsDiscsController = () => {
     };
 
     useEffect(() => {
+        if (slot1[0] === "◻️") {
+            return;
+        }
         if (stoppedSpin1 && stoppedSpin2 && stoppedSpin3) {
             if (
                 slot1.every(
