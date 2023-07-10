@@ -1,4 +1,23 @@
+.panel-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .discs-panel {
     display: flex;
     flex-direction: row;
+    width: fit-content;
+}
+.button-message-panel {
+    padding: 2em;
+    width: fit-content;
+    text-align: center;
+}
+.button-message-panel > * {
+    font-size: larger;
+}
+
+.button-message-panel > button {
+    padding: 0.3em 0.8em;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SLOTS_SYMBOLS } from "../../../config";
+import "./SlotsDisc.css";
 
 const SlotsDisc = ({
     discNumber,

@@ -51,7 +51,7 @@ const SlotsDiscsController = () => {
     ]);
 
     return (
-        <div>
+        <div class="panel-wrapper">
             <div className="discs-panel">
                 <SlotsDisc
                     discNumber={1}
@@ -78,7 +78,7 @@ const SlotsDiscsController = () => {
                     setStoppedSpin={setStoppedSpin3}
                 />
             </div>
-            <div>
+            <div className="button-message-panel">
                 <button onClick={spinSlots}>Spin</button>
                 <p>{message}</p>
             </div>
