@@ -1,0 +1,47 @@
+/* Looper styles */
+@keyframes slideAnimVertical {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+@keyframes slideAnimHorizontal {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.looper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.looper__innerList {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+}
+.looper__innerList[orientation="vertical"] {
+    flex-direction: column;
+}
+
+.looper__innerList[data-animate="true"][orientation="vertical"]
+    .looper__listInstance {
+    animation: slideAnimVertical linear infinite;
+}
+.looper__innerList[data-animate="true"][orientation="horizontal"]
+    .looper__listInstance {
+    animation: slideAnimHorizontal linear infinite;
+}
+
+.looper__listInstance {
+    display: flex;
+    width: max-content;
+
+    animation: none;
+}
