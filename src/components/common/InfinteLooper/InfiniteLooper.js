@@ -29,12 +29,10 @@ const InfiniteLooper = function InfiniteLooper({ speed, direction, children }) {
             outerRef.current.getBoundingClientRect();
 
         if (orientation === "vertical") {
-            console.log({ parentHeight, height });
             const heightDeficit = parentHeight - height;
 
             const instanceHeight = height / innerRef.current.children.length;
 
-            console.log({ heightDeficit }, { instanceHeight });
             if (heightDeficit) {
                 setLooperInstances(
                     looperInstances +
