@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { SLOTS_SYMBOLS } from "../../../config";
 import "./SlotsDisc.css";
+import InfiniteLooper from "../InfinteLooper/InfiniteLooper";
 
 const SlotsDisc = ({
     discNumber,
@@ -11,6 +12,7 @@ const SlotsDisc = ({
     setStoppedSpin,
 }) => {
     const [shouldSpin, setShouldSpin] = useState(true);
+    const [symbolsOffset, setSymbolsOffset] = useState(0);
     SlotsDisc.symbols = SLOTS_SYMBOLS;
 
     useEffect(() => {
@@ -30,6 +32,8 @@ const SlotsDisc = ({
                 randomPos + 1 === SlotsDisc.symbols.length ? 0 : randomPos + 1;
             // then sets a temporary rolling state for the disc
             setDiscState(["⏬", "⏬", "⏬"]);
+            // sets new offset based on prevPos;
+            setTimeout(() => setSymbolsOffset(prevPos), 400);
             // then schedules the calculated state for the said disc
             setTimeout(() => {
                 setDiscState([
@@ -45,15 +49,24 @@ const SlotsDisc = ({
     }, [shouldSpin, triggerSpin, setDiscState, timeout, setStoppedSpin]);
 
     return (
-        <div className="slot-disc">
-            {discState.map((discSymbol, index) => (
-                <div
-                    key={`${discNumber}-${index.toString().padStart(2, "0")}`}
-                    className="disc-symbol"
-                >
-                    {discSymbol}
-                </div>
-            ))}
+        <div className="wrapper">
+            {/* <InfiniteLooper speed={1} direction={"up"}> */}
+            <div className="slot-disc">
+                {[
+                    ...SLOTS_SYMBOLS.slice(symbolsOffset, SLOTS_SYMBOLS.length),
+                    ...SLOTS_SYMBOLS.slice(0, symbolsOffset),
+                ].map((discSymbol, index) => (
+                    <div
+                        key={`${discNumber}-${index
+                            .toString()
+                            .padStart(2, "0")}`}
+                        className="disc-symbol"
+                    >
+                        {discSymbol}
+                    </div>
+                ))}
+            </div>
+            {/* </InfiniteLooper> */}
         </div>
     );
 };

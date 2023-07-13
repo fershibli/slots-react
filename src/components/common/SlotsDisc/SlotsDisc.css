@@ -1,3 +1,10 @@
+.wrapper {
+    height: 170px;
+    overflow: hidden;
+}
+.slot-disc {
+    top: 0;
+}
 .disc-symbol {
     font-size: -webkit-xxx-large;
 }
