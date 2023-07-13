@@ -5,6 +5,8 @@ const InfiniteLooper = function InfiniteLooper({ speed, direction, children }) {
     const [looperInstances, setLooperInstances] = useState(1);
     const outerRef = useRef(null);
     const innerRef = useRef(null);
+    const orientation =
+        direction === "up" || direction === "down" ? "vertical" : "horizontal";
 
     function resetAnimation() {
         if (innerRef?.current) {
@@ -21,22 +23,40 @@ const InfiniteLooper = function InfiniteLooper({ speed, direction, children }) {
     const setupInstances = useCallback(() => {
         if (!innerRef?.current || !outerRef?.current) return;
 
-        const { width } = innerRef.current.getBoundingClientRect();
+        const { width, height } = innerRef.current.getBoundingClientRect();
 
-        const { width: parentWidth } = outerRef.current.getBoundingClientRect();
+        const { width: parentWidth, height: parentHeight } =
+            outerRef.current.getBoundingClientRect();
 
-        const widthDeficit = parentWidth - width;
+        if (orientation === "vertical") {
+            console.log({ parentHeight, height });
+            const heightDeficit = parentHeight - height;
 
-        const instanceWidth = width / innerRef.current.children.length;
+            const instanceHeight = height / innerRef.current.children.length;
 
-        if (widthDeficit) {
-            setLooperInstances(
-                looperInstances + Math.ceil(widthDeficit / instanceWidth) + 1
-            );
+            console.log({ heightDeficit }, { instanceHeight });
+            if (heightDeficit) {
+                setLooperInstances(
+                    looperInstances +
+                        Math.ceil(heightDeficit / instanceHeight) +
+                        1
+                );
+            }
+        } else {
+            const widthDeficit = parentWidth - width;
+
+            const instanceWidth = width / innerRef.current.children.length;
+            if (widthDeficit) {
+                setLooperInstances(
+                    looperInstances +
+                        Math.ceil(widthDeficit / instanceWidth) +
+                        1
+                );
+            }
         }
 
         resetAnimation();
-    }, [looperInstances]);
+    }, [looperInstances, orientation]);
 
     /*
         6 instances, 200 each = 1200
@@ -54,16 +74,12 @@ const InfiniteLooper = function InfiniteLooper({ speed, direction, children }) {
     }, [looperInstances, setupInstances]);
 
     return (
-        <div className="looper" ref={outerRef}>
+        <div className="looper" ref={outerRef} orientation={orientation}>
             <div
                 className="looper__innerList"
                 ref={innerRef}
                 data-animate="true"
-                orientation={
-                    direction === "up" || direction === "down"
-                        ? "vertical"
-                        : "horizontal"
-                }
+                orientation={orientation}
             >
                 {[...Array(looperInstances)].map((_, ind) => (
                     <div

@@ -20,6 +20,10 @@
     width: 100%;
     overflow: hidden;
 }
+.looper[orientation="vertical"] {
+    width: unset;
+    height: 100%;
+}
 
 .looper__innerList {
     display: flex;
