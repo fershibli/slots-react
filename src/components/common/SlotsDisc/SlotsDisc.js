@@ -37,7 +37,19 @@ const SlotsDisc = ({
             setDiscState(["⏬", "⏬", "⏬"]);
             // sets new offset based on prevPos;
             setSlotSpeed(0.01);
-            setTimeout(() => setSymbolsOffset(prevPos), 400);
+            setTimeout(() => {
+                const accelerationInterval = setInterval(() => {
+                    setSlotSpeed((slotSpeed) => {
+                        if (slotSpeed === 0) {
+                            clearInterval(accelerationInterval);
+                            return 0;
+                        }
+                        // console.log(slotSpeed);
+                        return slotSpeed * 1.11;
+                    });
+                }, parseInt(timeout / 100));
+                setSymbolsOffset(prevPos);
+            }, 200);
             // then schedules the calculated state for the said disc
             setTimeout(() => {
                 setDiscState([
