@@ -18,6 +18,7 @@ const SlotsDiscsController = () => {
         if (triggerSpin) {
             return;
         }
+        setMessage("SPINNING!!!");
         setStoppedSpin1(false);
         setStoppedSpin2(false);
         setStoppedSpin3(false);
