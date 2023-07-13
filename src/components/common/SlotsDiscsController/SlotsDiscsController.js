@@ -58,7 +58,7 @@ const SlotsDiscsController = () => {
             <div className="discs-panel">
                 <SlotsDisc
                     discNumber={1}
-                    timeout={1000}
+                    timeout={3000}
                     discState={slot1}
                     setDiscState={setSlot1}
                     triggerSpin={triggerSpin}
@@ -66,7 +66,7 @@ const SlotsDiscsController = () => {
                 />
                 <SlotsDisc
                     discNumber={2}
-                    timeout={2000}
+                    timeout={5000}
                     discState={slot2}
                     setDiscState={setSlot2}
                     triggerSpin={triggerSpin}
@@ -74,7 +74,7 @@ const SlotsDiscsController = () => {
                 />
                 <SlotsDisc
                     discNumber={3}
-                    timeout={3000}
+                    timeout={9000}
                     discState={slot3}
                     setDiscState={setSlot3}
                     triggerSpin={triggerSpin}
