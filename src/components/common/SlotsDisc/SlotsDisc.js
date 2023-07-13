@@ -13,6 +13,7 @@ const SlotsDisc = ({
 }) => {
     const [shouldSpin, setShouldSpin] = useState(true);
     const [symbolsOffset, setSymbolsOffset] = useState(0);
+    const [slotSpeed, setSlotSpeed] = useState(0);
     SlotsDisc.symbols = SLOTS_SYMBOLS;
 
     useEffect(() => {
@@ -33,6 +34,7 @@ const SlotsDisc = ({
             // then sets a temporary rolling state for the disc
             setDiscState(["⏬", "⏬", "⏬"]);
             // sets new offset based on prevPos;
+            setSlotSpeed(0.01);
             setTimeout(() => setSymbolsOffset(prevPos), 400);
             // then schedules the calculated state for the said disc
             setTimeout(() => {
@@ -41,6 +43,7 @@ const SlotsDisc = ({
                     SlotsDisc.symbols[randomPos],
                     SlotsDisc.symbols[nextPos],
                 ]);
+                setSlotSpeed(0);
                 setStoppedSpin(true);
             }, timeout);
         } else if (!triggerSpin) {
@@ -50,23 +53,26 @@ const SlotsDisc = ({
 
     return (
         <div className="wrapper">
-            {/* <InfiniteLooper speed={1} direction={"up"}> */}
-            <div className="slot-disc">
-                {[
-                    ...SLOTS_SYMBOLS.slice(symbolsOffset, SLOTS_SYMBOLS.length),
-                    ...SLOTS_SYMBOLS.slice(0, symbolsOffset),
-                ].map((discSymbol, index) => (
-                    <div
-                        key={`${discNumber}-${index
-                            .toString()
-                            .padStart(2, "0")}`}
-                        className="disc-symbol"
-                    >
-                        {discSymbol}
-                    </div>
-                ))}
-            </div>
-            {/* </InfiniteLooper> */}
+            <InfiniteLooper speed={slotSpeed} direction={"up"}>
+                <div className="slot-disc">
+                    {[
+                        ...SLOTS_SYMBOLS.slice(
+                            symbolsOffset,
+                            SLOTS_SYMBOLS.length
+                        ),
+                        ...SLOTS_SYMBOLS.slice(0, symbolsOffset),
+                    ].map((discSymbol, index) => (
+                        <div
+                            key={`${discNumber}-${index
+                                .toString()
+                                .padStart(2, "0")}`}
+                            className="disc-symbol"
+                        >
+                            {discSymbol}
+                        </div>
+                    ))}
+                </div>
+            </InfiniteLooper>
         </div>
     );
 };
