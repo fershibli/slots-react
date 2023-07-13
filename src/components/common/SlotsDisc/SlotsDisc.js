@@ -36,7 +36,7 @@ const SlotsDisc = ({
             // then sets a temporary rolling state for the disc
             setDiscState(["⏬", "⏬", "⏬"]);
             // sets new offset based on prevPos;
-            setSlotSpeed(0.01);
+            setSlotSpeed(0.007);
             setTimeout(() => {
                 const accelerationInterval = setInterval(() => {
                     setSlotSpeed((slotSpeed) => {
@@ -49,7 +49,7 @@ const SlotsDisc = ({
                     });
                 }, parseInt(timeout / 100));
                 setSymbolsOffset(prevPos);
-            }, 200);
+            }, 500);
             // then schedules the calculated state for the said disc
             setTimeout(() => {
                 setDiscState([
