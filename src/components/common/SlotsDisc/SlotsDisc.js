@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { SLOTS_SYMBOLS } from "../../../config";
 import "./SlotsDisc.css";
 import InfiniteLooper from "../InfinteLooper/InfiniteLooper";
@@ -11,9 +11,11 @@ const SlotsDisc = ({
     triggerSpin,
     setStoppedSpin,
 }) => {
+    const slotDiscRef = useRef([]);
     const [shouldSpin, setShouldSpin] = useState(true);
     const [symbolsOffset, setSymbolsOffset] = useState(0);
     const [slotSpeed, setSlotSpeed] = useState(0);
+    const [slotHeight, setSlotHeight] = useState(170);
     SlotsDisc.symbols = SLOTS_SYMBOLS;
 
     useEffect(() => {
@@ -50,11 +52,16 @@ const SlotsDisc = ({
             setShouldSpin(true);
         }
     }, [shouldSpin, triggerSpin, setDiscState, timeout, setStoppedSpin]);
+    useEffect(() => {
+        if (slotDiscRef.current) {
+            setSlotHeight(slotDiscRef.current.children[0].offsetHeight * 3);
+        }
+    }, []);
 
     return (
-        <div className="wrapper">
+        <div className="wrapper" style={{ height: slotHeight }}>
             <InfiniteLooper speed={slotSpeed} direction={"up"}>
-                <div className="slot-disc">
+                <div className="slot-disc" ref={slotDiscRef}>
                     {[
                         ...SLOTS_SYMBOLS.slice(
                             symbolsOffset,
