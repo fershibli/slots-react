@@ -1,8 +1,13 @@
 .wrapper {
     overflow: hidden;
+    height: var(--height);
 }
 .wrapper::after {
     content: "";
+    top: var(--top);
+    left: var(--left);
+    width: var(--width);
+    height: var(--height);
     position: absolute;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     pointer-events: none;

@@ -82,12 +82,10 @@ const SlotsDisc = ({
             className="wrapper"
             style={{
                 height: parseInt(slotHeight) + "px",
-                "&:after": {
-                    height: parseInt(slotRect.height) + "px",
-                    width: parseInt(slotRect.width) + "px",
-                    top: parseInt(slotRect.top) + "px",
-                    left: parseInt(slotRect.left) + "px",
-                },
+                "--height": parseInt(slotHeight) + "px",
+                "--width": parseInt(slotRect.width) + "px",
+                "--top": parseInt(slotRect.top) + "px",
+                "--left": parseInt(slotRect.left) + "px",
             }}
         >
             <InfiniteLooper speed={slotSpeed} direction={"up"}>
