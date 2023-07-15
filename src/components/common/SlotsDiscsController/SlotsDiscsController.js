@@ -55,7 +55,7 @@ const SlotsDiscsController = () => {
     ]);
 
     return (
-        <div class="panel-wrapper">
+        <div className="panel-wrapper">
             <div className="discs-panel">
                 <SlotsDisc
                     discNumber={1}
