@@ -44,7 +44,6 @@ const SlotsDisc = ({
                             clearInterval(accelerationInterval);
                             return 0;
                         }
-                        // console.log(slotSpeed);
                         return slotSpeed * 1.11;
                     });
                 }, parseInt(timeout / 100));
