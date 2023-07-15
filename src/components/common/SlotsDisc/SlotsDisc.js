@@ -6,7 +6,6 @@ import InfiniteLooper from "../InfinteLooper/InfiniteLooper";
 const SlotsDisc = ({
     discNumber,
     timeout,
-    discState,
     setDiscState,
     triggerSpin,
     setStoppedSpin,

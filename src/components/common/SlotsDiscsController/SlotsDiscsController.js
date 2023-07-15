@@ -60,7 +60,6 @@ const SlotsDiscsController = () => {
                 <SlotsDisc
                     discNumber={1}
                     timeout={3000}
-                    discState={slot1}
                     setDiscState={setSlot1}
                     triggerSpin={triggerSpin}
                     setStoppedSpin={setStoppedSpin1}
@@ -68,7 +67,6 @@ const SlotsDiscsController = () => {
                 <SlotsDisc
                     discNumber={2}
                     timeout={5000}
-                    discState={slot2}
                     setDiscState={setSlot2}
                     triggerSpin={triggerSpin}
                     setStoppedSpin={setStoppedSpin2}
@@ -76,7 +74,6 @@ const SlotsDiscsController = () => {
                 <SlotsDisc
                     discNumber={3}
                     timeout={9000}
-                    discState={slot3}
                     setDiscState={setSlot3}
                     triggerSpin={triggerSpin}
                     setStoppedSpin={setStoppedSpin3}
