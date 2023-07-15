@@ -67,8 +67,13 @@ const SlotsDisc = ({
     useEffect(() => {
         if (slotDiscRef.current) {
             setSlotHeight(slotDiscRef.current.children[0].offsetHeight * 3);
-            console.log(slotDiscRef.current.getBoundingClientRect());
-            setSlotRect(slotDiscRef.current.getBoundingClientRect());
+            const currentSlotRect = slotDiscRef.current.getBoundingClientRect();
+            setSlotRect({
+                top: currentSlotRect.top,
+                left: currentSlotRect.left,
+                width: currentSlotRect.width,
+                height: currentSlotRect.height,
+            });
         }
     }, []);
 
@@ -76,7 +81,7 @@ const SlotsDisc = ({
         <div
             className="wrapper"
             style={{
-                height: slotHeight,
+                height: parseInt(slotHeight) + "px",
                 "&:after": {
                     height: parseInt(slotRect.height) + "px",
                     width: parseInt(slotRect.width) + "px",
