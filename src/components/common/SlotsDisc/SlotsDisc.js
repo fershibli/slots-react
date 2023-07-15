@@ -15,6 +15,7 @@ const SlotsDisc = ({
     const [symbolsOffset, setSymbolsOffset] = useState(0);
     const [slotSpeed, setSlotSpeed] = useState(0);
     const [slotHeight, setSlotHeight] = useState(170);
+    const [slotRect, setSlotRect] = useState({});
     SlotsDisc.symbols = SLOTS_SYMBOLS;
 
     useEffect(() => {
@@ -62,14 +63,28 @@ const SlotsDisc = ({
             setShouldSpin(true);
         }
     }, [shouldSpin, triggerSpin, setDiscState, timeout, setStoppedSpin]);
+
     useEffect(() => {
         if (slotDiscRef.current) {
             setSlotHeight(slotDiscRef.current.children[0].offsetHeight * 3);
+            console.log(slotDiscRef.current.getBoundingClientRect());
+            setSlotRect(slotDiscRef.current.getBoundingClientRect());
         }
     }, []);
 
     return (
-        <div className="wrapper" style={{ height: slotHeight }}>
+        <div
+            className="wrapper"
+            style={{
+                height: slotHeight,
+                "&:after": {
+                    height: parseInt(slotRect.height) + "px",
+                    width: parseInt(slotRect.width) + "px",
+                    top: parseInt(slotRect.top) + "px",
+                    left: parseInt(slotRect.left) + "px",
+                },
+            }}
+        >
             <InfiniteLooper speed={slotSpeed} direction={"up"}>
                 <div className="slot-disc" ref={slotDiscRef}>
                     {[
