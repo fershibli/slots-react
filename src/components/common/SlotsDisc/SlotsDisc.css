@@ -9,10 +9,11 @@
     width: var(--width);
     height: var(--height);
     position: absolute;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
     pointer-events: none;
 }
 .slot-disc {
+    padding: 0 10px;
     top: 0;
 }
 .disc-symbol {
