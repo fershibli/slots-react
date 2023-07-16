@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { SLOTS_SYMBOLS } from "../../../config";
 import "./SlotsDisc.css";
 import InfiniteLooper from "../InfinteLooper/InfiniteLooper";
@@ -64,20 +64,35 @@ const SlotsDisc = ({
         }
     }, [shouldSpin, triggerSpin, setDiscState, timeout, setStoppedSpin]);
 
-    useEffect(() => {
-        if (slotDiscRef.current) {
-            setSlotHeight(
-                (slotDiscRef.current.children[0].offsetHeight * 3).toFixed(3)
-            );
-            const currentSlotRect = slotDiscRef.current.getBoundingClientRect();
-            setSlotRect({
-                top: currentSlotRect.top.toFixed(3),
-                left: currentSlotRect.left.toFixed(3),
-                width: currentSlotRect.width.toFixed(3),
-                height: currentSlotRect.height.toFixed(3),
-            });
+    const handleResize = useCallback((isFirstCall) => {
+        setSlotHeight(
+            (slotDiscRef.current.children[0].offsetHeight * 3).toFixed(3)
+        );
+        const currentSlotRect = slotDiscRef.current.getBoundingClientRect();
+
+        console.log(currentSlotRect);
+        const newValues = {
+            top: currentSlotRect.top.toFixed(3),
+            left: currentSlotRect.left.toFixed(3),
+            width: currentSlotRect.width.toFixed(3),
+            height: currentSlotRect.height.toFixed(3),
+        };
+        if (!isFirstCall) {
+            newValues.top -= newValues.height;
         }
+        setSlotRect(newValues);
+        console.log(newValues);
     }, []);
+
+    useEffect(() => handleResize(true), []);
+
+    useEffect(() => {
+        window.addEventListener("resize", () => handleResize(false));
+
+        return () => {
+            window.removeEventListener("resize", () => handleResize(false));
+        };
+    }, [handleResize]);
 
     return (
         <div
