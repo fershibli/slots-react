@@ -69,8 +69,6 @@ const SlotsDisc = ({
             (slotDiscRef.current.children[0].offsetHeight * 3).toFixed(3)
         );
         const currentSlotRect = slotDiscRef.current.getBoundingClientRect();
-
-        console.log(currentSlotRect);
         const newValues = {
             top: currentSlotRect.top.toFixed(3),
             left: currentSlotRect.left.toFixed(3),
@@ -81,7 +79,6 @@ const SlotsDisc = ({
             newValues.top -= newValues.height;
         }
         setSlotRect(newValues);
-        console.log(newValues);
     }, []);
 
     useEffect(() => handleResize(true), []);
