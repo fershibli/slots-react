@@ -66,13 +66,15 @@ const SlotsDisc = ({
 
     useEffect(() => {
         if (slotDiscRef.current) {
-            setSlotHeight(slotDiscRef.current.children[0].offsetHeight * 3);
+            setSlotHeight(
+                (slotDiscRef.current.children[0].offsetHeight * 3).toFixed(3)
+            );
             const currentSlotRect = slotDiscRef.current.getBoundingClientRect();
             setSlotRect({
-                top: currentSlotRect.top,
-                left: currentSlotRect.left,
-                width: currentSlotRect.width,
-                height: currentSlotRect.height,
+                top: currentSlotRect.top.toFixed(3),
+                left: currentSlotRect.left.toFixed(3),
+                width: currentSlotRect.width.toFixed(3),
+                height: currentSlotRect.height.toFixed(3),
             });
         }
     }, []);
@@ -81,11 +83,11 @@ const SlotsDisc = ({
         <div
             className="wrapper"
             style={{
-                height: parseInt(slotHeight) + "px",
-                "--height": parseInt(slotHeight) + "px",
-                "--width": parseInt(slotRect.width) + "px",
-                "--top": parseInt(slotRect.top) + "px",
-                "--left": parseInt(slotRect.left) + "px",
+                height: slotHeight + "px",
+                "--height": slotHeight + "px",
+                "--width": slotRect.width + "px",
+                "--top": slotRect.top + "px",
+                "--left": slotRect.left + "px",
             }}
         >
             <InfiniteLooper speed={slotSpeed} direction={"up"}>
