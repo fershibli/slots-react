@@ -81,7 +81,7 @@ const SlotsDisc = ({
         setSlotRect(newValues);
     }, []);
 
-    useEffect(() => handleResize(true), []);
+    useEffect(() => handleResize(true), [handleResize]);
 
     useEffect(() => {
         window.addEventListener("resize", () => handleResize(false));
