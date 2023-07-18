@@ -1,0 +1,24 @@
+.led {
+    width: 0.5em;
+    height: 2em;
+}
+
+.led.gold {
+    background-color: #ffd700;
+    box-shadow: 0 0 5px 2px #ffd700;
+}
+
+.led.blue {
+    background-color: #00f;
+    box-shadow: 0 0 5px 2px #00f;
+}
+
+.led.green {
+    background-color: #008000;
+    box-shadow: 0 0 5px 2px #008000;
+}
+
+.led.red {
+    background-color: #f00;
+    box-shadow: 0 0 5px 2px #f00;
+}
