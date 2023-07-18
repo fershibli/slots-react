@@ -1,15 +1,16 @@
 .led-bar {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    height: calc((1em + 2px) * 4);
     width: 0.5em;
     background-color: black;
 }
 
 .led {
     flex: 1;
+    margin: 1px 0;
     width: 0.5em;
-    height: 2em;
+    height: 1em;
 }
 
 .led.gold {
