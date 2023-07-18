@@ -1,4 +1,13 @@
+.led-bar {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 0.5em;
+    background-color: black;
+}
+
 .led {
+    flex: 1;
     width: 0.5em;
     height: 2em;
 }
