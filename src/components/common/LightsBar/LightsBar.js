@@ -4,7 +4,7 @@ import "./LightsBar.css";
 
 const LightsBar = () => {
     return (
-        <InfiniteLooper speed={1} direction={"up"}>
+        <InfiniteLooper speed={0.3} direction={"down"}>
             <div className="led-bar">
                 <div className="led gold" />
                 <div className="led red" />
