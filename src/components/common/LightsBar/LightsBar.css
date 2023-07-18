@@ -1,3 +1,9 @@
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
 .led-bar {
     display: flex;
     flex-direction: column;

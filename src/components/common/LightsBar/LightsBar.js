@@ -2,16 +2,18 @@ import React from "react";
 import InfiniteLooper from "../InfinteLooper/InfiniteLooper";
 import "./LightsBar.css";
 
-const LightsBar = () => {
+const LightsBar = ({ height, speed }) => {
     return (
-        <InfiniteLooper speed={0.3} direction={"down"}>
-            <div className="led-bar">
-                <div className="led gold" />
-                <div className="led red" />
-                <div className="led green" />
-                <div className="led blue" />
-            </div>
-        </InfiniteLooper>
+        <div className="wrapper" style={{ height }}>
+            <InfiniteLooper speed={0.3} direction={"up"}>
+                <div className="led-bar">
+                    <div className="led gold" />
+                    <div className="led red" />
+                    <div className="led blue" />
+                    <div className="led green" />
+                </div>
+            </InfiniteLooper>
+        </div>
     );
 };
 
