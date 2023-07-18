@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SlotsDisc from "../SlotsDisc/SlotsDisc";
 import "./SlotsDiscsController.css";
 import { SLOTS_SYMBOLS } from "../../../config";
+import LightsBar from "../LightsBar/LightsBar";
 
 const SlotsDiscsController = () => {
     const [slot1, setSlot1] = useState(["◻️", "◻️", "◻️"]);
@@ -13,6 +14,9 @@ const SlotsDiscsController = () => {
     const [message, setMessage] = useState("Good Luck!");
     const [triggerSpin, setTriggerSpin] = useState(false);
     const symbols = SLOTS_SYMBOLS;
+
+    const [slotsHeight, setSlotsHeight] = useState(167);
+    const firstSlotsRef = useRef(null);
 
     const spinSlots = () => {
         if (triggerSpin) {
@@ -54,16 +58,26 @@ const SlotsDiscsController = () => {
         symbols,
     ]);
 
+    useEffect(() => {
+        if (firstSlotsRef.current) {
+            console.log(firstSlotsRef.current.offsetHeight);
+            setSlotsHeight(firstSlotsRef.current.offsetHeight);
+        }
+    }, []);
+
     return (
         <div className="panel-wrapper">
             <div className="discs-panel">
+                <LightsBar height={slotsHeight} />
                 <SlotsDisc
+                    ref={firstSlotsRef}
                     discNumber={1}
                     timeout={3000}
                     setDiscState={setSlot1}
                     triggerSpin={triggerSpin}
                     setStoppedSpin={setStoppedSpin1}
                 />
+                <LightsBar height={slotsHeight} />
                 <SlotsDisc
                     discNumber={2}
                     timeout={5000}
@@ -71,6 +85,7 @@ const SlotsDiscsController = () => {
                     triggerSpin={triggerSpin}
                     setStoppedSpin={setStoppedSpin2}
                 />
+                <LightsBar height={slotsHeight} />
                 <SlotsDisc
                     discNumber={3}
                     timeout={9000}
@@ -78,6 +93,7 @@ const SlotsDiscsController = () => {
                     triggerSpin={triggerSpin}
                     setStoppedSpin={setStoppedSpin3}
                 />
+                <LightsBar height={slotsHeight} />
             </div>
             <div className="button-message-panel">
                 <button onClick={spinSlots}>Spin</button>
